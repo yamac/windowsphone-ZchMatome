@@ -1,0 +1,139 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="ZchMatome.Views.GroupDetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:localControls="clr-namespace:ZchMatome.LocalControls"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+    xmlns:wpe="clr-namespace:WPExtensions;assembly=WPExtensions"
+    xmlns:sampleData="clr-namespace:ZchMatome.SampleData"
+    xmlns:converters="clr-namespace:ZchMatome.Converters"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="False"
+    toolkit:TiltEffect.IsTiltEnabled="True"
+    DataContext="{Binding Source={StaticResource Locator}, Path=GroupDetailPageViewModel}"
+    d:DataContext="{Binding Source={StaticResource SampleData}}"
+    >
+
+    <!-- リソース -->
+    <phone:PhoneApplicationPage.Resources>
+        <sampleData:GroupDetailPageSampleData x:Key="SampleData"/>
+    </phone:PhoneApplicationPage.Resources>
+
+    <!-- ページ切り替え効果 -->
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!-- トリガー -->
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="BackKeyPress">
+            <i:InvokeCommandAction
+                Command="{Binding BackKeyPressCommand}"
+                />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <!-- ルート -->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- ヘッダー -->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="PageHeaderTitle" Text="{Binding Path=Resources.GroupDetailPage_PageHeaderTitle, Source={StaticResource LocalizedResources}}" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding Path=Resources.GroupDetailPage_PageTitle, Source={StaticResource LocalizedResources}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontSize="50"/>
+        </StackPanel>
+
+        <!-- コンテンツ -->
+        <ScrollViewer x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <StackPanel>
+                <!-- グループ名 -->
+                <StackPanel Margin="{StaticResource PhoneMargin}">
+                    <!-- グループ名 -->
+                    <TextBlock
+                        Style="{StaticResource PhoneTextLargeStyle}"
+                        FontSize="36"
+                        TextWrapping="Wrap"
+                        Text="{Binding TheFeedGroup.Title}"
+                        />
+                </StackPanel>
+
+                <!-- 購読 -->
+                <Grid Margin="{StaticResource PhoneMargin}">
+                    <toolkit:ToggleSwitch
+                        x:Name="SubscriptionToggleSwitch"
+                        Header="{Binding Path=Resources.GroupDetailPage_SubscribeToggleSwitchHeader, Source={StaticResource LocalizedResources}}"
+                        IsChecked="{Binding TheFeedGroup.Subscription, Mode=TwoWay}"
+                        >
+                        <toolkit:ToggleSwitch.ContentTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <!-- アイコン -->
+                                    <Image
+                                        Width="40"
+                                        Height="40"
+                                        Source="/Resources/Icons/Subscription.png"
+                                        Opacity="{Binding ElementName=SubscriptionToggleSwitch, Path=IsChecked, Converter={StaticResource BooleanToOpacityConverter}}"
+                                        />
+                                </StackPanel>
+                            </DataTemplate>
+                        </toolkit:ToggleSwitch.ContentTemplate>
+                    </toolkit:ToggleSwitch>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- アプリケーションバー -->
+        <wpe:AdvancedApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Default">
+            <wpe:AdvancedApplicationBarIconButton IconUri="/Resources/Icons/ApplicationBar.Ok.png" Text="{Binding Path=Resources.Common_AppBar_IconButtonText_Complete, Source={StaticResource LocalizedResources}}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction
+                            Command="{Binding OkCommand}"
+                            />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </wpe:AdvancedApplicationBarIconButton>
+            <wpe:AdvancedApplicationBarIconButton IconUri="/Resources/Icons/ApplicationBar.Cancel.png" Text="{Binding Path=Resources.Common_AppBar_IconButtonText_Cancel, Source={StaticResource LocalizedResources}}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction
+                            Command="{Binding CancelCommand}"
+                            />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </wpe:AdvancedApplicationBarIconButton>
+        </wpe:AdvancedApplicationBar>
+    </Grid>
+
+</phone:PhoneApplicationPage>

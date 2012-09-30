@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ChannelDetailPage_NotificationToggleSwitchHeader" xml:space="preserve">
+    <value>Notification</value>
+  </data>
+  <data name="ChannelDetailPage_OfficialBlog" xml:space="preserve">
+    <value>Blog</value>
+  </data>
+  <data name="ChannelDetailPage_PageHeaderTitle" xml:space="preserve">
+    <value>BLOG INFORMATION</value>
+  </data>
+  <data name="ChannelDetailPage_PivotItem_ChannelSettings" xml:space="preserve">
+    <value>settings</value>
+  </data>
+  <data name="ChannelDetailPage_PivotItem_ChannelUpdates" xml:space="preserve">
+    <value>what's new</value>
+  </data>
+  <data name="ChannelDetailPage_SubscriptionToggleSwitchHeader" xml:space="preserve">
+    <value>Subscription</value>
+  </data>
+  <data name="Common_AppBar_IconButtonText_Cancel" xml:space="preserve">
+    <value>cancel</value>
+  </data>
+  <data name="Common_AppBar_IconButtonText_Complete" xml:space="preserve">
+    <value>complete</value>
+  </data>
+  <data name="Common_AppBar_MenuItemText_Refresh" xml:space="preserve">
+    <value>refresh</value>
+  </data>
+  <data name="Common_AppBar_MenuItemText_TruncateFavorites" xml:space="preserve">
+    <value>delete all favorites</value>
+  </data>
+  <data name="Common_Loading" xml:space="preserve">
+    <value>Just a moment...</value>
+  </data>
+  <data name="Common_ToggleSwitch_Content_Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="Common_ToggleSwitch_Content_On" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="Constants_Media_AccentColors_Blue" xml:space="preserve">
+    <value>blue</value>
+  </data>
+  <data name="Constants_Media_AccentColors_Brown" xml:space="preserve">
+    <value>brown</value>
+  </data>
+  <data name="Constants_Media_AccentColors_Green" xml:space="preserve">
+    <value>green</value>
+  </data>
+  <data name="Constants_Media_AccentColors_Lime" xml:space="preserve">
+    <value>lime</value>
+  </data>
+  <data name="Constants_Media_AccentColors_Magenta" xml:space="preserve">
+    <value>magenta</value>
+  </data>
+  <data name="Constants_Media_AccentColors_Mango" xml:space="preserve">
+    <value>mango</value>
+  </data>
+  <data name="Constants_Media_AccentColors_None" xml:space="preserve">
+    <value>none</value>
+  </data>
+  <data name="Constants_Media_AccentColors_Pink" xml:space="preserve">
+    <value>pink</value>
+  </data>
+  <data name="Constants_Media_AccentColors_Purple" xml:space="preserve">
+    <value>purple</value>
+  </data>
+  <data name="Constants_Media_AccentColors_Red" xml:space="preserve">
+    <value>red</value>
+  </data>
+  <data name="Constants_Media_AccentColors_Teal" xml:space="preserve">
+    <value>teal</value>
+  </data>
+  <data name="GroupAndChannelListPage_ChannelList_Title" xml:space="preserve">
+    <value>blogs</value>
+  </data>
+  <data name="GroupAndChannelListPage_GroupList_Title" xml:space="preserve">
+    <value>groups</value>
+  </data>
+  <data name="GroupAndChannelListPage_PageHeaderTitle" xml:space="preserve">
+    <value>BLOG INFORMATION</value>
+  </data>
+  <data name="GroupDetailPage_PageHeaderTitle" xml:space="preserve">
+    <value>CATEGORY INFORMATION</value>
+  </data>
+  <data name="GroupDetailPage_PageTitle" xml:space="preserve">
+    <value>category settings</value>
+  </data>
+  <data name="GroupDetailPage_SubscribeToggleSwitchHeader" xml:space="preserve">
+    <value>Subscribe</value>
+  </data>
+  <data name="MainPage_AppBar_MenuItemText_AboutTheApplication" xml:space="preserve">
+    <value>settings</value>
+  </data>
+  <data name="MainPage_AppBar_MenuItemText_GroupAndChannelInformation" xml:space="preserve">
+    <value>blog information</value>
+  </data>
+  <data name="MainPage_Error_FailedToGetAllFeedGroups" xml:space="preserve">
+    <value>Can't retrieve data.</value>
+  </data>
+  <data name="MainPage_Error_FailedToGetAllFeedGroupsAndChannels" xml:space="preserve">
+    <value>Can't retrieve data.</value>
+  </data>
+  <data name="MainPage_Error_FailedToGetFeedItems" xml:space="preserve">
+    <value>Can't retrieve data.</value>
+  </data>
+  <data name="MainPage_PageHeaderTitle" xml:space="preserve">
+    <value>2ch matome reader</value>
+  </data>
+  <data name="MainPage_PivotItem_ChannelUpdates" xml:space="preserve">
+    <value>what's new</value>
+  </data>
+  <data name="MainPage_PivotItem_Favorites" xml:space="preserve">
+    <value>favorites</value>
+  </data>
+  <data name="MainPage_TipsForNoFavorites" xml:space="preserve">
+    <value>There are no favorites.
+Tap on ☆ on each article
+to mark as favorite.</value>
+  </data>
+  <data name="MainPage_TipsForNoSubscription" xml:space="preserve">
+    <value>There are no subscriptions.</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="PreferencesPage_ApplicationDetailsAndReviews" xml:space="preserve">
+    <value>Details and reviews for app</value>
+  </data>
+  <data name="PreferencesPage_ApplicationTitle" xml:space="preserve">
+    <value>2ch matome reader</value>
+  </data>
+  <data name="PreferencesPage_ApplicationVersion" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="PreferencesPage_Busy" xml:space="preserve">
+    <value>Just a moment...</value>
+  </data>
+  <data name="PreferencesPage_Error_NotificationRegistrationFailed" xml:space="preserve">
+    <value>Registration failed. Check your network connection.</value>
+  </data>
+  <data name="PreferencesPage_GotoApplicationDetails" xml:space="preserve">
+    <value>Open app details</value>
+  </data>
+  <data name="PreferencesPage_Notification_ReceiveNotification" xml:space="preserve">
+    <value>Push notification</value>
+  </data>
+  <data name="PreferencesPage_Notification_ReceiveNotificationDesc" xml:space="preserve">
+    <value>You can receive tile notification for blog updates you subscribe. You can also receive toast notification for blog updates you wants. Pin this app to your start screen to receive tile notification.</value>
+  </data>
+  <data name="PreferencesPage_Notification_ReceiveNotification_ConfirmationCaption" xml:space="preserve">
+    <value>Confirmation of push notification</value>
+  </data>
+  <data name="PreferencesPage_Notification_ReceiveNotification_ConfirmationText" xml:space="preserve">
+    <value>Enabling push notification, you can receive tile and toast notification for blog updates. You can turn this functionality off anytime. Do you want to enable this functionality?</value>
+  </data>
+  <data name="PreferencesPage_PageHeaderTitle" xml:space="preserve">
+    <value>SETTINGS</value>
+  </data>
+  <data name="PreferencesPage_PivotItem_AboutTheApplication" xml:space="preserve">
+    <value>about app</value>
+  </data>
+  <data name="PreferencesPage_PivotItem_Notification" xml:space="preserve">
+    <value>notification</value>
+  </data>
+  <data name="PreferencesPage_TwitterAccountForSupport" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="PreferencesPage_TwitterAccountForSupportValue" xml:space="preserve">
+    <value>@yamac_support</value>
+  </data>
+  <data name="String1PreferencesPage_Notification_ReceiveNotification" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WebPage_AppBar_MenuItemText_OpenWithBrowser" xml:space="preserve">
+    <value>open with browser</value>
+  </data>
+  <data name="WebPage_AppBar_MenuItemText_ShareThePage" xml:space="preserve">
+    <value>share page</value>
+  </data>
+  <data name="WebPage_Error_NavigationFailedMessage" xml:space="preserve">
+    <value>Check your cellular data or Wi-Fi connection.</value>
+  </data>
+  <data name="WebPage_Error_NavigationFailedTitle" xml:space="preserve">
+    <value>The page cannot be displayed.</value>
+  </data>
+</root>
