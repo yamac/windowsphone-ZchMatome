@@ -10,6 +10,7 @@ using Microsoft.Phone.Notification;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Collections.Generic;
+using Microsoft.Phone.Shell;
 
 namespace ZchMatome.Services
 {
@@ -617,6 +618,12 @@ namespace ZchMatome.Services
                 };
 
                 notificationChannel.Close();
+                ShellTile shellTile = ShellTile.ActiveTiles.First();
+                StandardTileData shellTileData = new StandardTileData();
+                shellTileData.BackBackgroundImage = null;
+                shellTileData.BackContent = "";
+                shellTileData.BackTitle = "";
+                shellTile.Update(shellTileData);
 
                 string uri = API.DeviceUnregister;
                 System.Diagnostics.Debug.WriteLine(uri);

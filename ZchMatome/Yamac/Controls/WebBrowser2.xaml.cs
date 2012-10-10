@@ -19,6 +19,7 @@ namespace Yamac.Controls
         private Regex headTagRegex = new Regex(@"(<head[^>]*>)", RegexOptions.IgnoreCase);
         private Regex embedTagRegex = new Regex(@"<embed [^>]*?src=""?(?:https?://)?(?:www\.)?(?:youtu\.be/|youtube\.com(?:/v/|/embed/|/watch\?v=))([\w-]{10,12}).*?""[^>]*?>", RegexOptions.IgnoreCase);
         private Regex userGadTagRegex = new Regex(@"(<div class=""google-user-ad"")>", RegexOptions.IgnoreCase);
+        private Regex asideTagRegex = new Regex(@"<aside[^>]*?>.+?</aside>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         private bool inTheWebBrowser;
         private bool isNavigating;
@@ -88,6 +89,7 @@ namespace Yamac.Controls
                             byte[] bytes;
                             bytes = Encoding.Unicode.GetBytes(mainHtml);
                             mainHtml = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+                            bytes = null;
 
                             string docBase = uri.AbsoluteUri;
                             if (mainSource.Query.Length > 0)
@@ -103,9 +105,15 @@ namespace Yamac.Controls
                             mainHtml = headTagRegex.Replace(mainHtml, "$1<base href=\"" + docBase + "\"/>");
                             mainHtml = embedTagRegex.Replace(mainHtml, "<iframe src=\"http://www.youtube.com/embed/$1\" width=\"100%%\"></iframe>");
                             mainHtml = userGadTagRegex.Replace(mainHtml, "$1 style=\"display:none\"$2");
+                            mainHtml = asideTagRegex.Replace(mainHtml, "");
 
                             bytes = Encoding.UTF8.GetBytes(mainHtml);
                             mainHtml = Encoding.Unicode.GetString(bytes, 0, bytes.Length);
+                            int lastChar = (int)(mainHtml.Substring(mainHtml.Length - 1, 1).ToCharArray()[0]);
+                            if (lastChar == 65533)
+                            {
+                                mainHtml = mainHtml.Substring(0, mainHtml.Length - 1);
+                            }
                         }
 
                         return 0;
