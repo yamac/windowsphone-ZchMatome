@@ -6,6 +6,7 @@ A '2ch matome reader' app allows you to read tons of 2ch web scraps.
 *PUSH NOTIFICATION FUNCTIONALITY IS BETA VERSION. IT MAY NOT WORK CORRECTLY.
 
 Versions
+0.10.0.2: Improved application stability.
 0.9.0.1: Improved application stability.
 0.9.0.0: Desigin renewal.
 0.1.0.0: First release.
