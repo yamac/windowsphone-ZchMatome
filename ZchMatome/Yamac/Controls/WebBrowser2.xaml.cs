@@ -18,7 +18,7 @@ namespace Yamac.Controls
     {
         private const string DEFAULT_USER_AGENT = "Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3";
         private Regex headTagRegex = new Regex(@"(<head[^>]*>)", RegexOptions.IgnoreCase);
-        private Regex iframeTagRegex = new Regex(@"<iframe[^>]*?>.+?</iframe>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        private Regex invalidIframeTagRegex = new Regex(@"<div class=""maist"")>.*?</div>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
         private Regex embedTagRegex = new Regex(@"<embed [^>]*?src=""?(?:https?://)?(?:www\.)?(?:youtu\.be/|youtube\.com(?:/v/|/embed/|/watch\?v=))([\w-]{10,12}).*?""[^>]*?>", RegexOptions.IgnoreCase);
         private Regex userGadTagRegex = new Regex(@"(<div class=""google-user-ad"")>", RegexOptions.IgnoreCase);
         private Regex asideTagRegex = new Regex(@"<aside[^>]*?>.+?</aside>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
@@ -91,15 +91,17 @@ namespace Yamac.Controls
                         {
                             docBase = docBase.Substring(0, docBase.LastIndexOf(mainSource.Query));
                         }
+                        mainSource = new Uri(docBase, UriKind.Absolute);
+                        /*
                         int lastSlash = docBase.LastIndexOf('/');
                         if (lastSlash >= 0)
                         {
                             docBase = docBase.Substring(0, lastSlash + 1);
                         }
-                        mainSource = new Uri(docBase, UriKind.Absolute);
+                        */
 
                         mainHtml = headTagRegex.Replace(mainHtml, "$1<base href=\"" + docBase + "\"/>");
-                        mainHtml = iframeTagRegex.Replace(mainHtml, "");
+                        mainHtml = invalidIframeTagRegex.Replace(mainHtml, "");
                         mainHtml = embedTagRegex.Replace(mainHtml, "<iframe src=\"http://www.youtube.com/embed/$1\" width=\"100%%\"></iframe>");
                         mainHtml = userGadTagRegex.Replace(mainHtml, "$1 style=\"display:none\"$2");
                         mainHtml = asideTagRegex.Replace(mainHtml, "");
