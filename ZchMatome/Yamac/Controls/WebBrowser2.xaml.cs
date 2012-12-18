@@ -10,6 +10,7 @@ using System.IO;
 using ICSharpCode.SharpZipLib.GZip;
 using ZchMatome;
 using System.Text.RegularExpressions;
+using System.IO.IsolatedStorage;
 
 namespace Yamac.Controls
 {
@@ -22,6 +23,7 @@ namespace Yamac.Controls
         private Regex asideTagRegex = new Regex(@"<aside[^>]*?>.+?</aside>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         private bool inTheWebBrowser;
+        private bool firstNavigation;
         private bool isNavigating;
         private int numNavigates;
         private Stack<NavigationHistory> historyGoBackStack;
@@ -75,7 +77,7 @@ namespace Yamac.Controls
                         }
 
                         // ダウンロード
-                        StreamReader reader = new StreamReader(stream, Encoding.Unicode);
+                        StreamReader reader = new StreamReader(stream);
                         mainHtml = reader.ReadToEnd();
                         reader.Close();
 
@@ -83,38 +85,21 @@ namespace Yamac.Controls
                         stream.Close();
 
                         // 整形
-                        string contentType = res.Headers[HttpRequestHeader.ContentType];
-                        if (contentType.ToUpper().IndexOf("UTF-8") > 0)
+                        string docBase = uri.AbsoluteUri;
+                        if (mainSource.Query.Length > 0)
                         {
-                            byte[] bytes;
-                            bytes = Encoding.Unicode.GetBytes(mainHtml);
-                            mainHtml = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
-                            bytes = null;
-
-                            string docBase = uri.AbsoluteUri;
-                            if (mainSource.Query.Length > 0)
-                            {
-                                docBase = docBase.Substring(0, docBase.LastIndexOf(mainSource.Query));
-                            }
-                            int lastSlash = docBase.LastIndexOf('/');
-                            if (lastSlash >= 0)
-                            {
-                                docBase = docBase.Substring(0, lastSlash + 1);
-                            }
-
-                            mainHtml = headTagRegex.Replace(mainHtml, "$1<base href=\"" + docBase + "\"/>");
-                            mainHtml = embedTagRegex.Replace(mainHtml, "<iframe src=\"http://www.youtube.com/embed/$1\" width=\"100%%\"></iframe>");
-                            mainHtml = userGadTagRegex.Replace(mainHtml, "$1 style=\"display:none\"$2");
-                            mainHtml = asideTagRegex.Replace(mainHtml, "");
-
-                            bytes = Encoding.UTF8.GetBytes(mainHtml);
-                            mainHtml = Encoding.Unicode.GetString(bytes, 0, bytes.Length);
-                            int lastChar = (int)(mainHtml.Substring(mainHtml.Length - 1, 1).ToCharArray()[0]);
-                            if (lastChar == 65533)
-                            {
-                                mainHtml = mainHtml.Substring(0, mainHtml.Length - 1);
-                            }
+                            docBase = docBase.Substring(0, docBase.LastIndexOf(mainSource.Query));
                         }
+                        int lastSlash = docBase.LastIndexOf('/');
+                        if (lastSlash >= 0)
+                        {
+                            docBase = docBase.Substring(0, lastSlash + 1);
+                        }
+
+                        mainHtml = headTagRegex.Replace(mainHtml, "$1<base href=\"" + docBase + "\"/>");
+                        mainHtml = embedTagRegex.Replace(mainHtml, "<iframe src=\"http://www.youtube.com/embed/$1\" width=\"100%%\"></iframe>");
+                        mainHtml = userGadTagRegex.Replace(mainHtml, "$1 style=\"display:none\"$2");
+                        mainHtml = asideTagRegex.Replace(mainHtml, "");
 
                         return 0;
                     }
@@ -124,8 +109,17 @@ namespace Yamac.Controls
                 (
                     _ =>
                     {
+                        // IsoStoreに保存
+                        var store = IsolatedStorageFile.GetUserStoreForApplication();
+                        using (var writeFile = new StreamWriter(new IsolatedStorageFileStream("content.html", FileMode.Create, FileAccess.Write, store)))
+                        {
+                            writeFile.Write(mainHtml);
+                            writeFile.Close();
+                        }
+
                         // WebBrowserへセット
-                        TheWebBrowser.NavigateToString(mainHtml);
+                        firstNavigation = true;
+                        TheWebBrowser.Navigate(new Uri("content.html", UriKind.Relative));
                     }
                     ,
                     _ =>
@@ -325,30 +319,13 @@ namespace Yamac.Controls
         private void TheWebBrowser_Navigating(object sender, Microsoft.Phone.Controls.NavigatingEventArgs e)
         {
             // 通常のナビゲーションをフック
+            if (firstNavigation)
+            {
+                return;
+            }
             isNavigating = true;
             IsBusy = true;
             e.Cancel = true;
-            /*
-            if ("about".Equals(e.Uri.Scheme))
-            {
-                string url = mainSource.AbsoluteUri;
-                if (mainSource.Query.Length > 0)
-                {
-                    url = url.Substring(0, url.LastIndexOf(mainSource.Query));
-                }
-                int lastSlash = url.LastIndexOf('/');
-                if (lastSlash >= 0)
-                {
-                    url = url.Substring(0, lastSlash + 1);
-                }
-                url += e.Uri.AbsoluteUri.Substring(6);
-                SubWebBrowser.Navigate(new Uri(url, UriKind.Absolute), null, "User-Agent: " + UserAgent);
-            }
-            else
-            {
-                SubWebBrowser.Navigate(e.Uri, null, "User-Agent: " + UserAgent);
-            }
-             */
             SubWebBrowser.Navigate(e.Uri, null, "User-Agent: " + UserAgent);
             SubWebBrowser.Visibility = Visibility.Visible;
             TheWebBrowser.Visibility = Visibility.Collapsed;
@@ -359,6 +336,10 @@ namespace Yamac.Controls
         private void TheWebBrowser_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
             IsBusy = false;
+            if (firstNavigation)
+            {
+                firstNavigation = false;
+            }
 
             // ハンドラー
             if (Navigated != null)
