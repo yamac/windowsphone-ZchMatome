@@ -1,4 +1,4 @@
 Title     : 2chまとめ読み
-Category1 : ツール＆ユーティリティ
-Category2 : 
+Category1 : ニュース
+Category2 : 地域＆国内
 Deeplink  : http://windowsphone.com/s?appid=8f93029a-0bcd-49be-9ca2-0d08e0f39594

@@ -1,0 +1,16 @@
+Desc1     : reader app for 2ch web scraps
+Desc2     :
+A '2ch matome reader' app allows you to read tons of 2ch web scraps.
+
+*SOME CONTENTS SUCH AS BLOG TITLES AND BLOG ARTICLES ARE DISPLAYED IN JAPANESE.
+*PUSH NOTIFICATION FUNCTIONALITY IS BETA VERSION. IT MAY NOT WORK CORRECTLY.
+
+Versions
+1.0.0.2: Fixed some designs.
+1.0.0.1: New features of Windows Phone 8 available. Improved application stability.
+0.10.0.2: Improved application stability.
+0.9.0.1: Improved application stability.
+0.9.0.0: Desigin renewal.
+0.1.0.0: First release.
+
+Keywords  : 2ch;Ç‹Ç∆Çﬂ;ÉjÉÖÅ[ÉX;2chÇ‹Ç∆Çﬂ;2ÇøÇ·ÇÒÇÀÇÈ
