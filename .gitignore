@@ -4,3 +4,4 @@
 */PerformanceLogs
 *.suo
 */*.csproj.user
+*/PerfLogs
