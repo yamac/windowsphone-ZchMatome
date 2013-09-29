@@ -6,7 +6,9 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:toolkitwp7="clr-namespace:Microsoft.Phone.Controls.WP7;assembly=Microsoft.Phone.Controls.Toolkit.WP7"
     xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:primitiveswp7="clr-namespace:Microsoft.Phone.Controls.WP7.Primitives;assembly=Microsoft.Phone.Controls.Toolkit.WP7"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
     xmlns:im="clr-namespace:Microsoft.Expression.Interactivity.Media;assembly=Microsoft.Expression.Interactions"
@@ -227,13 +229,13 @@
             </Setter>
         </Style>
         
-        <Style x:Key="FluidItemLongListSelectorStyle" TargetType="controls:LongListSelector">
+        <Style x:Key="FluidItemLongListSelectorStyle" TargetType="toolkitwp7:LongListSelector">
             <Setter Property="Background" Value="{StaticResource PhoneBackgroundBrush}"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <primitives:TemplatedListBox x:Name="TemplatedListBox" Background="{TemplateBinding Background}">
-                            <primitives:TemplatedListBox.ItemsPanel>
+                        <primitiveswp7:TemplatedListBox x:Name="TemplatedListBox" Background="{TemplateBinding Background}">
+                            <primitiveswp7:TemplatedListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <VirtualizingStackPanel>
                                         <i:Interaction.Behaviors>
@@ -248,8 +250,8 @@
                                         </i:Interaction.Behaviors>
                                     </VirtualizingStackPanel>
                                 </ItemsPanelTemplate>
-                            </primitives:TemplatedListBox.ItemsPanel>
-                            <primitives:TemplatedListBox.ItemContainerStyle>
+                            </primitiveswp7:TemplatedListBox.ItemsPanel>
+                            <primitiveswp7:TemplatedListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                     <Setter Property="Template">
@@ -287,8 +289,8 @@
                                         </Setter.Value>
                                     </Setter>
                                 </Style>
-                            </primitives:TemplatedListBox.ItemContainerStyle>
-                        </primitives:TemplatedListBox>
+                            </primitiveswp7:TemplatedListBox.ItemContainerStyle>
+                        </primitiveswp7:TemplatedListBox>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

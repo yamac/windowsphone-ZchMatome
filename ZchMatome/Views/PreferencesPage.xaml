@@ -54,19 +54,19 @@
     <!-- ルート -->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!-- ピボット -->
-        <controls:Pivot Title="{Binding Path=Resources.PreferencesPage_PageHeaderTitle, Source={StaticResource LocalizedResources}}">
+        <phone:Pivot Title="{Binding Path=Resources.PreferencesPage_PageHeaderTitle, Source={StaticResource LocalizedResources}}">
             <!-- ピボット:タイトル -->
-            <controls:Pivot.TitleTemplate>
+            <phone:Pivot.TitleTemplate>
                 <DataTemplate>
                     <TextBlock
                         FontWeight="Bold"
                         Text="{Binding}"
                         />
                 </DataTemplate>
-            </controls:Pivot.TitleTemplate>
+            </phone:Pivot.TitleTemplate>
 
             <!-- ピボット:ヘッダー -->
-            <controls:Pivot.HeaderTemplate>
+            <phone:Pivot.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock
                         Margin="9,0,0,0"
@@ -75,11 +75,10 @@
                         Text="{Binding}"
                         />
                 </DataTemplate>
-            </controls:Pivot.HeaderTemplate>
+            </phone:Pivot.HeaderTemplate>
 
             <!-- ピボット:アイテム 通知 -->
-            
-            <controls:PivotItem Header="{Binding Path=Resources.PreferencesPage_PivotItem_Notification, Source={StaticResource LocalizedResources}}">
+             <phone:PivotItem Header="{Binding Path=Resources.PreferencesPage_PivotItem_Notification, Source={StaticResource LocalizedResources}}">
                 <StackPanel>
                     <!-- プッシュ通知の受け取り -->
                     <Grid Margin="{StaticResource PhoneMargin}">
@@ -111,11 +110,44 @@
                                 />
                         </StackPanel>
                     </Grid>
+
+                    <!-- ロック画面の設定 -->
+                    <Grid Margin="{StaticResource PhoneMargin}">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock
+                                Style="{StaticResource PhoneTextLargeStyle}"
+                                FontSize="{StaticResource PhoneFontSizeMedium}"
+                                Text="{Binding Path=Resources.PreferencesPage_LockScreenSettings, Source={StaticResource LocalizedResources}}"
+                                />
+                            <Grid Margin="{StaticResource PhoneMargin}">
+                                <HyperlinkButton
+                                    x:Name="OpenLockScreenSettings"
+                                    Padding="{StaticResource PhoneMargin}"
+                                    HorizontalAlignment="Left"
+                                    HorizontalContentAlignment="Left"
+                                    Style="{StaticResource HyperlinkEmptyStyle}"
+                                    Margin="0,0,0,-20"
+                                    >
+                                    <localControls:HeaderedContentControl
+                                        Style="{StaticResource SinglelineHyperlinkStyle}"
+                                        Content="{Binding Path=Resources.PreferencesPage_OpenLockScreenSettings, Source={StaticResource LocalizedResources}}"
+                                        />
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Tap">
+                                            <i:InvokeCommandAction
+                                                Command="{Binding OpenLockScreenSettingsTapCommand}"
+                                                />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </HyperlinkButton>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
                 </StackPanel>
-            </controls:PivotItem>
+            </phone:PivotItem>
             
             <!-- ピボット:アイテム アプリ -->
-            <controls:PivotItem Header="{Binding Path=Resources.PreferencesPage_PivotItem_AboutTheApplication, Source={StaticResource LocalizedResources}}">
+            <phone:PivotItem Header="{Binding Path=Resources.PreferencesPage_PivotItem_AboutTheApplication, Source={StaticResource LocalizedResources}}">
                 <StackPanel>
                     <Grid Margin="{StaticResource PhoneMargin}">
                         <TextBlock
@@ -203,8 +235,8 @@
                         </StackPanel>
                     </Grid>
                 </StackPanel>
-            </controls:PivotItem>
-        </controls:Pivot>
+            </phone:PivotItem>
+        </phone:Pivot>
 
         <c4f:ProgressOverlay 
             Name="ProgressOverlay" 
@@ -215,7 +247,7 @@
                     HorizontalAlignment="Center"
                     Text="{Binding Path=Resources.PreferencesPage_Busy, Source={StaticResource LocalizedResources}}"
                     />
-                <toolkit:PerformanceProgressBar 
+                <ProgressBar 
                     IsIndeterminate="{Binding ElementName=ProgressOverlay, Path=Visibility, Converter={StaticResource VisibilityToBooleanConverter}}"
                     />
             </StackPanel>

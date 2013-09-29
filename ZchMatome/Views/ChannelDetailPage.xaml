@@ -6,9 +6,9 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:localControls="clr-namespace:ZchMatome.LocalControls"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:toolkitwp7="clr-namespace:Microsoft.Phone.Controls.WP7;assembly=Microsoft.Phone.Controls.Toolkit.WP7"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
     xmlns:mvvm="clr-namespace:SimpleMvvmToolkit;assembly=SimpleMvvmToolkit-WP7"
@@ -23,12 +23,10 @@
     shell:SystemTray.IsVisible="False"
     toolkit:TiltEffect.IsTiltEnabled="True"
     DataContext="{Binding Source={StaticResource Locator}, Path=ChannelDetailPageViewModel}"
-    d:DataContext="{Binding Source={StaticResource SampleData}}"
     >
 
     <!-- リソース -->
     <phone:PhoneApplicationPage.Resources>
-        <sampleData:ChannelDetailPageSampleData x:Key="SampleData"/>
     </phone:PhoneApplicationPage.Resources>
 
     <!-- ページ切り替え効果 -->
@@ -73,22 +71,22 @@
         </StackPanel>
         
         <!-- ピボット -->
-        <controls:Pivot
+        <phone:Pivot
             x:Name="ThePivot"
             Grid.Row="1"
             Margin="0,-10,0,0"
             >
             <!-- ピボット:タイトル -->
-            <controls:Pivot.TitleTemplate>
+            <phone:Pivot.TitleTemplate>
                 <DataTemplate>
                     <TextBlock
                         Text="{Binding}"
                         />
                 </DataTemplate>
-            </controls:Pivot.TitleTemplate>
+            </phone:Pivot.TitleTemplate>
 
             <!-- ピボット:ヘッダー -->
-            <controls:Pivot.HeaderTemplate>
+            <phone:Pivot.HeaderTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock
@@ -99,10 +97,10 @@
                             />
                     </StackPanel>
                 </DataTemplate>
-            </controls:Pivot.HeaderTemplate>
+            </phone:Pivot.HeaderTemplate>
 
             <!-- ピボット:新着情報 -->
-            <controls:PivotItem
+            <phone:PivotItem
                 Header="{Binding Path=Resources.ChannelDetailPage_PivotItem_ChannelUpdates, Source={StaticResource LocalizedResources}}"
                 DataContext="{Binding TheChannelsUpdatesListViewModel}"
                 >
@@ -114,7 +112,7 @@
                         />
 
                     <!-- 記事リスト -->
-                    <toolkit:LongListSelector
+                    <toolkitwp7:LongListSelector
                         x:Name="TheChannelsUpdatesList"
                         Background="Transparent"
                         ItemsSource="{Binding FeedItems}"
@@ -139,7 +137,7 @@
                         </i:Interaction.Triggers>
 
                         <!-- 記事リスト:フッター読み込み中 -->
-                        <toolkit:LongListSelector.ListFooterTemplate>
+                        <toolkitwp7:LongListSelector.ListFooterTemplate>
                             <DataTemplate>
                                 <!-- LongListSelector.ListFooterTemplateがDataContextを引き継がないのでこでセットするしかない回避策 -->
                                 <Grid Height="32" Margin="{StaticResource PhoneVerticalMargin}" DataContext="{Binding DataContext, ElementName=TheChannelsUpdatesList}">
@@ -156,7 +154,7 @@
                                             />
 
                                         <!-- ローディングインジケーター -->
-                                        <toolkit:PerformanceProgressBar
+                                        <ProgressBar
                                             Grid.Row="0"
                                             Height="4"
                                             VerticalAlignment="Top"
@@ -165,13 +163,13 @@
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
-                        </toolkit:LongListSelector.ListFooterTemplate>
-                    </toolkit:LongListSelector>
+                        </toolkitwp7:LongListSelector.ListFooterTemplate>
+                    </toolkitwp7:LongListSelector>
                 </Grid>
-            </controls:PivotItem>
+            </phone:PivotItem>
             
             <!-- ピボット:ブログ設定 -->
-            <controls:PivotItem Header="{Binding Path=Resources.ChannelDetailPage_PivotItem_ChannelSettings, Source={StaticResource LocalizedResources}}">
+            <phone:PivotItem Header="{Binding Path=Resources.ChannelDetailPage_PivotItem_ChannelSettings, Source={StaticResource LocalizedResources}}">
                 <ScrollViewer>
                     <StackPanel>
                         <!-- ピボット毎メニュー -->
@@ -292,8 +290,8 @@
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>
-            </controls:PivotItem>
-        </controls:Pivot>
+            </phone:PivotItem>
+        </phone:Pivot>
 
         <!-- アプリケーションバー -->
         <wpe:AdvancedApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Default">

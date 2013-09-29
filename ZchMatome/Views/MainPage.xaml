@@ -9,6 +9,7 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:localControls="clr-namespace:ZchMatome.LocalControls"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:toolkitwp7="clr-namespace:Microsoft.Phone.Controls.WP7;assembly=Microsoft.Phone.Controls.Toolkit.WP7"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
     xmlns:mvvm="clr-namespace:SimpleMvvmToolkit;assembly=SimpleMvvmToolkit-WP7"
@@ -61,10 +62,11 @@
         </Grid.RowDefinitions>
         
         <!-- ローディングインジケーター -->
-        <toolkit:PerformanceProgressBar
+        <ProgressBar
             Height="4"
             VerticalAlignment="Top"
             IsIndeterminate="{Binding IsBusy, Mode=TwoWay}"
+            Background="Transparent"
             />
 
         <!-- ヘッダー -->
@@ -73,7 +75,7 @@
         </StackPanel>
         
         <!-- ピボット -->
-        <controls:Pivot
+        <phone:Pivot
             Visibility="{Binding IsInitializing, Converter={StaticResource BooleanToInverseVisibilityConverter}}"
             x:Name="ThePivot"
             Grid.Row="1"
@@ -90,7 +92,7 @@
             </i:Interaction.Triggers>
 
             <!-- ピボット:ヘッダー -->
-            <controls:Pivot.HeaderTemplate>
+            <phone:Pivot.HeaderTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock
@@ -101,10 +103,10 @@
                             />
                     </StackPanel>
                 </DataTemplate>
-            </controls:Pivot.HeaderTemplate>
+            </phone:Pivot.HeaderTemplate>
 
             <!-- ピボット:新着情報 -->
-            <controls:PivotItem
+            <phone:PivotItem
                 Header="{Binding}"
                 DataContext="{Binding SubscriptionChannelsUpdatesListViewModel}"
                 >
@@ -146,7 +148,7 @@
                     </Grid>
                 
                     <!-- 記事リスト -->
-                    <toolkit:LongListSelector
+                    <toolkitwp7:LongListSelector
                         Visibility="{Binding HasMember, Converter={StaticResource BooleanToVisibilityConverter}}"
                         x:Name="SubscriptionChannelsUpdatesList"
                         Background="Transparent"
@@ -172,7 +174,7 @@
                         </i:Interaction.Triggers>
 
                         <!-- 記事リスト:フッター読み込み中 -->
-                        <toolkit:LongListSelector.ListFooterTemplate>
+                        <toolkitwp7:LongListSelector.ListFooterTemplate>
                             <DataTemplate>
                                 <!-- LongListSelector.ListFooterTemplateがDataContextを引き継がないのでこでセットするしかない回避策 -->
                                 <Grid Height="32" Margin="{StaticResource PhoneVerticalMargin}" DataContext="{Binding DataContext, ElementName=SubscriptionChannelsUpdatesList}">
@@ -189,7 +191,7 @@
                                             />
 
                                         <!-- ローディングインジケーター -->
-                                        <toolkit:PerformanceProgressBar
+                                        <ProgressBar
                                             Grid.Row="0"
                                             Height="4"
                                             VerticalAlignment="Top"
@@ -198,13 +200,13 @@
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
-                        </toolkit:LongListSelector.ListFooterTemplate>
-                    </toolkit:LongListSelector>
+                        </toolkitwp7:LongListSelector.ListFooterTemplate>
+                    </toolkitwp7:LongListSelector>
                 </Grid>
-            </controls:PivotItem>
+            </phone:PivotItem>
 
             <!-- ピボット:お気に入り -->
-            <controls:PivotItem
+            <phone:PivotItem
                 Header="{Binding}"
                 DataContext="{Binding FavoriteChannelsUpdatesListViewModel}"
                 >
@@ -238,7 +240,7 @@
                     </Grid>
                 
                     <!-- 記事リスト -->
-                    <toolkit:LongListSelector
+                    <toolkitwp7:LongListSelector
                         Visibility="{Binding HasMember, Converter={StaticResource BooleanToVisibilityConverter}}"
                         x:Name="FavoriteChannelsUpdatesList"
                         Background="Transparent"
@@ -265,7 +267,7 @@
                         </i:Interaction.Triggers>
 
                         <!-- 記事リスト:フッター読み込み中 -->
-                        <toolkit:LongListSelector.ListFooterTemplate>
+                        <toolkitwp7:LongListSelector.ListFooterTemplate>
                             <DataTemplate>
                                 <!-- LongListSelector.ListFooterTemplateがDataContextを引き継がないのでこでセットするしかない回避策 -->
                                 <Grid Height="32" Margin="{StaticResource PhoneVerticalMargin}" DataContext="{Binding DataContext, ElementName=FavoriteChannelsUpdatesList}">
@@ -282,7 +284,7 @@
                                             />
 
                                         <!-- ローディングインジケーター -->
-                                        <toolkit:PerformanceProgressBar
+                                        <ProgressBar
                                             Grid.Row="0"
                                             Height="4"
                                             VerticalAlignment="Top"
@@ -291,11 +293,11 @@
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
-                        </toolkit:LongListSelector.ListFooterTemplate>
-                    </toolkit:LongListSelector>
+                        </toolkitwp7:LongListSelector.ListFooterTemplate>
+                    </toolkitwp7:LongListSelector>
                 </Grid>
-            </controls:PivotItem>
-        </controls:Pivot>
+            </phone:PivotItem>
+        </phone:Pivot>
 
         <!-- アプリケーションバー -->
         <wpe:AdvancedApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized">

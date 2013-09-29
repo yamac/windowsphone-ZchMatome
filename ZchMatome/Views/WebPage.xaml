@@ -6,7 +6,6 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
@@ -58,7 +57,7 @@
             />
 
         <!-- ローディングインジケーター -->
-        <toolkit:PerformanceProgressBar
+        <ProgressBar
             Grid.Row="0"
             Name="MainProgressBar"
             Height="4"
@@ -68,6 +67,15 @@
 
         <!-- アプリケーションバー -->
         <wpe:AdvancedApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized">
+            <wpe:AdvancedApplicationBarMenuItem Text="{Binding Path=Resources.WebPage_AppBar_MenuItemText_TapAndSend, Source={StaticResource LocalizedResources}}" Visibility="{Binding IsTapAndSendAvailable,Converter={StaticResource BooleanToVisibilityConverter}}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction
+                            Command="{Binding TapAndSendCommand}"
+                        />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </wpe:AdvancedApplicationBarMenuItem>
             <wpe:AdvancedApplicationBarMenuItem Text="{Binding Path=Resources.WebPage_AppBar_MenuItemText_OpenWithBrowser, Source={StaticResource LocalizedResources}}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">

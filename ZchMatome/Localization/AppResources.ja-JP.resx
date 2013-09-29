@@ -263,6 +263,9 @@
   <data name="PreferencesPage_GotoApplicationDetails" xml:space="preserve">
     <value>アプリの詳細を見る</value>
   </data>
+  <data name="PreferencesPage_LockScreenSettings" xml:space="preserve">
+    <value>ロック画面の設定</value>
+  </data>
   <data name="PreferencesPage_Notification_ReceiveNotification" xml:space="preserve">
     <value>プッシュ通知</value>
   </data>
@@ -276,6 +279,9 @@
   </data>
   <data name="PreferencesPage_Notification_ReceiveNotification_ConfirmationText" xml:space="preserve">
     <value>プッシュ通知を有効にすると新着情報をタイル通知とトースト通知で受け取ることができます。この機能はいつでも無効にすることができます。有効にしますか？</value>
+  </data>
+  <data name="PreferencesPage_OpenLockScreenSettings" xml:space="preserve">
+    <value>ロック画面の設定を変更する</value>
   </data>
   <data name="PreferencesPage_PageHeaderTitle" xml:space="preserve">
     <value>設定</value>
@@ -292,11 +298,26 @@
   <data name="PreferencesPage_TwitterAccountForSupportValue" xml:space="preserve">
     <value>@yamac_support</value>
   </data>
+  <data name="TapAndSend_Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="TapAndSend_Description" xml:space="preserve">
+    <value>相手のデバイスに電話をタップしてください。</value>
+  </data>
+  <data name="TapAndSend_Error_UnknownError" xml:space="preserve">
+    <value>処理に失敗しました。デバイスの状態を確認してください。</value>
+  </data>
+  <data name="TapAndSend_PageHeaderTitle" xml:space="preserve">
+    <value>タップ+送信</value>
+  </data>
   <data name="WebPage_AppBar_MenuItemText_OpenWithBrowser" xml:space="preserve">
     <value>ブラウザーで開く</value>
   </data>
   <data name="WebPage_AppBar_MenuItemText_ShareThePage" xml:space="preserve">
     <value>ページを共有</value>
+  </data>
+  <data name="WebPage_AppBar_MenuItemText_TapAndSend" xml:space="preserve">
+    <value>タップ+送信</value>
   </data>
   <data name="WebPage_Error_NavigationFailedMessage" xml:space="preserve">
     <value>ネットワークが接続されているか確認してください。</value>

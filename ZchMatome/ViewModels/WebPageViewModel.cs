@@ -4,6 +4,9 @@ using ZchMatome.Data;
 using ZchMatome.Navigation;
 using Microsoft.Phone.Tasks;
 using SimpleMvvmToolkit;
+using Windows.Networking.Proximity;
+using System.Windows;
+using Coding4Fun.Phone.Controls;
 
 namespace ZchMatome.ViewModels
 {
@@ -18,6 +21,18 @@ namespace ZchMatome.ViewModels
         {
             feedItem = (ChannelsUpdatesListViewModel.MarkableFeedItem)NavigationService.NavigationArgs;
             WebPageUri = new Uri(feedItem.Link);
+            if (_IsProximityDeviceAvailable == null)
+            {
+                try
+                {
+                    _IsProximityDeviceAvailable = (ProximityDevice.GetDefault() != null) ? true : false;
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    _IsProximityDeviceAvailable = false;
+                }
+            }
+            IsTapAndSendAvailable = (bool)_IsProximityDeviceAvailable;
         }
 
         #endregion
@@ -57,12 +72,38 @@ namespace ZchMatome.ViewModels
             }
         }
 
+        private static bool? _IsProximityDeviceAvailable = null;
+        private bool _IsTapAndSendAvailable;
+        public bool IsTapAndSendAvailable
+        {
+            get { return _IsTapAndSendAvailable; }
+            set
+            {
+                if (_IsTapAndSendAvailable == value) return;
+                _IsTapAndSendAvailable = value;
+                NotifyPropertyChanged(m => IsTapAndSendAvailable);
+            }
+        }
+
         #endregion
 
         #region Commands
         /************
          * Commands *
          ************/
+
+        public ICommand TapAndSendCommand
+        {
+            get
+            {
+                return new DelegateCommand(
+                () =>
+                {
+                    NavigationService.Navigate(new Uri("/Views/TapAndSendPage.xaml", UriKind.Relative), new Uri(feedItem.Link));
+                }
+                );
+            }
+        }
 
         public ICommand OpenWithBrowserCommand
         {
@@ -84,7 +125,7 @@ namespace ZchMatome.ViewModels
             get
             {
                 return new DelegateCommand(
-                () =>
+                async () =>
                 {
                     var task = new ShareLinkTask();
                     task.LinkUri = new Uri(feedItem.Link);

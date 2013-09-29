@@ -4,22 +4,24 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Controls.WP7;
+using LingListSelectorWP7 = Microsoft.Phone.Controls.WP7.LongListSelector;
 
 namespace ZchMatome.Views
 {
     public partial class GroupAndChannelListPage : PhoneApplicationPage
     {
-        private LongListSelector currentSelector;
+        private LingListSelectorWP7 currentSelector;
 
         public GroupAndChannelListPage()
         {
             InitializeComponent();
         }
-
+        
         private void ChannelList_GroupViewOpened(object sender, GroupViewOpenedEventArgs e)
         {
             //Hold a reference to the active long list selector.
-            currentSelector = sender as LongListSelector;
+            currentSelector = sender as LingListSelectorWP7;
 
             //Construct and begin a swivel animation to pop in the group view.
             IEasingFunction quadraticEase = new QuadraticEase { EasingMode = EasingMode.EaseOut };

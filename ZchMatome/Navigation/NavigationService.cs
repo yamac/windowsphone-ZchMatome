@@ -31,17 +31,29 @@ namespace ZchMatome.Navigation
         public static void Navigate(Uri pageUri, Object args = null)
         {
             _NavigationArgs = args;
-            RootFrame.Navigate(pageUri);
+            var dispatcher = Deployment.Current.Dispatcher;
+            dispatcher.BeginInvoke(() =>
+            {
+                RootFrame.Navigate(pageUri);
+            });
         }
 
         public static void GoBack()
         {
-            RootFrame.GoBack();
+            var dispatcher = Deployment.Current.Dispatcher;
+            dispatcher.BeginInvoke(() =>
+            {
+                RootFrame.GoBack();
+            });
         }
 
         public static void GoForward()
         {
-            RootFrame.GoForward();
+            var dispatcher = Deployment.Current.Dispatcher;
+            dispatcher.BeginInvoke(() =>
+            {
+                RootFrame.GoForward();
+            });
         }
     }
 }

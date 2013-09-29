@@ -102,5 +102,13 @@ namespace ZchMatome.Locators
                 return new PreferencesPageViewModel(TheApp, TheNavigator, TheZchMatomeService, TheFeedDataContext);
             }
         }
+
+        public TapAndSendPageViewModel TapAndSendPageViewModel
+        {
+            get
+            {
+                return new TapAndSendPageViewModel(TheNavigator);
+            }
+        }
     }
 }

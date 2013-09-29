@@ -91,6 +91,18 @@ namespace ZchMatome.ViewModels
          * Commands *
          ************/
 
+        public ICommand OpenLockScreenSettingsTapCommand
+        {
+            get
+            {
+                return new DelegateCommand(async () =>
+                {
+                    await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-settings-lock:"));
+                }
+                );
+            }
+        }
+
         public ICommand TweetAboutTheAppTapCommand
         {
             get

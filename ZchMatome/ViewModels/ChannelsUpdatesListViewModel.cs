@@ -10,6 +10,7 @@ using ZchMatome.Data;
 using ZchMatome.Navigation;
 using ZchMatome.Services;
 using System.ComponentModel;
+using LongListSelectorWP7 = Microsoft.Phone.Controls.WP7.LongListSelector;
 
 namespace ZchMatome.ViewModels
 {
@@ -264,7 +265,7 @@ namespace ZchMatome.ViewModels
         {
             get
             {
-                return new DelegateCommand<LongListSelector>((e) =>
+                return new DelegateCommand<LongListSelectorWP7>((e) =>
                 {
                     if (e.SelectedItem != null)
                     {
