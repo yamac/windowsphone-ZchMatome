@@ -55,7 +55,7 @@ namespace Yamac.Controls
 
         public void Navigate(Uri uri)
         {
-            if (uri.Scheme.Equals("http"))
+            if (uri.Scheme.Equals("http") && !uri.OriginalString.StartsWith("http://ggsoku.com/"))
             {
                 var req = WebRequest.CreateHttp(uri);
                 req.UserAgent = Constants.Net.UserAgent;
@@ -141,6 +141,7 @@ namespace Yamac.Controls
             }
             else
             {
+                firstNavigation = true;
                 TheWebBrowser.Navigate(uri);
             }
         }
