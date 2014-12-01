@@ -26,6 +26,7 @@ namespace Yamac.Controls
         private bool inTheWebBrowser;
         private bool firstNavigation;
         private bool isNavigating;
+        private bool isGoingBack;
         private int numNavigates;
         private Stack<NavigationHistory> historyGoBackStack;
         public string UserAgent { get; set; }
@@ -49,6 +50,7 @@ namespace Yamac.Controls
             SubWebBrowser.IsScriptEnabled = true;
             inTheWebBrowser = true;
             isNavigating = false;
+            isGoingBack = false;
             UserAgent = DEFAULT_USER_AGENT;
             historyGoBackStack = new Stack<NavigationHistory>();
         }
@@ -162,6 +164,7 @@ namespace Yamac.Controls
                 else
                 {
                     isNavigating = true;
+                    isGoingBack = true;
                     SubWebBrowser.Navigate(new Uri("javascript:history.back();"));
                 }
             }
@@ -407,6 +410,12 @@ namespace Yamac.Controls
                 }
                 return;
             }
+            else if (isGoingBack)
+            {
+                isGoingBack = false;
+                NavigationHistory history = historyGoBackStack.Pop();
+                CanGoBack = (historyGoBackStack.Count >= 1 ? true : false);
+            }
 
             IsBusy = true;
             numNavigates++;
@@ -421,6 +430,7 @@ namespace Yamac.Controls
         private void SubWebBrowser_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
             isNavigating = false;
+            isGoingBack = false;
 
             // ヒストリーの保持件数を調整
             if (e.NavigationMode == System.Windows.Navigation.NavigationMode.New)
