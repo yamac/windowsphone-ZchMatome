@@ -6,6 +6,7 @@ A '2ch matome reader' app allows you to read tons of 2ch web scraps.
 *PUSH NOTIFICATION FUNCTIONALITY IS BETA VERSION. IT MAY NOT WORK CORRECTLY.
 
 Versions
+1.0.0.4: Fixed issue which back button does not work correctly.
 1.0.0.3: Fixed some articles is shown incorrectly.
 1.0.0.2: Fixed some designs.
 1.0.0.1: New features of Windows Phone 8 available. Improved application stability.

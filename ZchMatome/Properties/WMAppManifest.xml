@@ -5,7 +5,7 @@
     <Language code="ja-JP" />
     <Language code="en-US" />
   </Languages>
-  <App xmlns="" ProductID="{a1e17634-f26f-47a5-a442-d3b1b3ebace3}" Title="@AppResLib.dll,-100" RuntimeType="Silverlight" Version="1.0.0.3" Genre="apps.normal" Author="author" Description="description" Publisher="publisher" PublisherID="{ca327940-ccc9-474d-878e-1d64279898c8}">
+  <App xmlns="" ProductID="{a1e17634-f26f-47a5-a442-d3b1b3ebace3}" Title="@AppResLib.dll,-100" RuntimeType="Silverlight" Version="1.0.0.4" Genre="apps.normal" Author="author" Description="description" Publisher="publisher" PublisherID="{ca327940-ccc9-474d-878e-1d64279898c8}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
